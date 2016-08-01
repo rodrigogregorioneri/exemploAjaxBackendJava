@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<style>
+table, td, tr{
+    border: dashed   1px black;
+    background-color: grey;
+    color: white;
+    font-size: 1.1em;
+}
+
+n{
+    background-color: blue;
+}
+
+
+</style>
+<body>
+<div ng-app="myApp" ng-controller="customersCtrl">
+<table>
+    <tr class="n">
+        <td class="n">Nome</td>
+        <td class="n">Pais</td>
+        <td class="n">Cidade</td>
+        <td class="n">Idade</td>
+    </tr>
+  <tr ng-repeat="x in names">
+    <td>{{x.Nome}}</td>
+    <td>{{x.Pais}}</td>
+    <td>{{x.Cidade}}</td>
+    <td>{{x.Idade}}</td>
+  </tr>
+</table>
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($scope, $http) {
+  $http.get("http://app10060.runtime.ide.integ.cronospaas.com.br/views/admin/dados.js")
+  .then(function (response) {$scope.names = response.data.informacao;});
+});
+</script>
+</body>
+</html>
